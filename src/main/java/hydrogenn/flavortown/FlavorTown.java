@@ -1,4 +1,4 @@
-package hydrogenn.flavortown;
+package main.java.hydrogenn.flavortown;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
