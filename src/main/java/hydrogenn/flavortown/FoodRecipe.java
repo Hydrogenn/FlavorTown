@@ -10,8 +10,9 @@ public class FoodRecipe {
 		}
 	}
 	
+	//TODO return an item this recipe can create
 	public ItemStack cook() {
-		
+		return null;
 	}
 	
 }

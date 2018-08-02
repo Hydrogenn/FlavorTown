@@ -2,6 +2,8 @@ package main.java.hydrogenn.flavortown;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import hydrogenn.customBrewery.BreweryListener;
+
 public class FlavorTown extends JavaPlugin {
     private static FlavorTown instance;
 
@@ -12,11 +14,17 @@ public class FlavorTown extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-
+        
+        addListener();
+        
         reload();
     }
 
-    public void reload() {
+    private void addListener() {
+    	getServer().getPluginManager().registerEvents(new BreweryListener(), this);
+	}
+
+	public void reload() {
         saveDefaultConfig();
         reloadConfig();
     }
