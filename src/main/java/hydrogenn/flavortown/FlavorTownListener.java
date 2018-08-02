@@ -4,7 +4,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.CraftingInventory;
-import org.bukkit.inventory.ItemStack;
 
 public class FlavorTownListener implements Listener {
 
@@ -16,7 +15,7 @@ public class FlavorTownListener implements Listener {
 		
 		CraftingInventory inventory = (CraftingInventory) e.getClickedInventory();
 		
-		FoodRecipe food = new FoodRecipe(inventory.getMatrix());
+		FoodCombo food = new FoodCombo(inventory.getMatrix());
 		
 		inventory.setResult(food.cook());
 		

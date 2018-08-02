@@ -1,5 +1,9 @@
 package main.java.hydrogenn.flavortown;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.Material;
 
 /**
@@ -69,16 +73,64 @@ public enum FoodMaterial {
 	PUMPKIN_PIE(Material.PUMPKIN_PIE, 8, Saturation.LOW, FoodGroup.SUGAR, true),
 	CAKE(Material.CAKE, 14, Saturation.POOR, FoodGroup.SUGAR, true);
 	
+	private static Map<Material, FoodMaterial> materialMap = new HashMap<Material, FoodMaterial>();
+	
+	private Material material;
+	private int hunger;
+	private Saturation saturation;
+	private FoodGroup foodGroup;
+	private boolean refried;
+	private Material baseMaterial;
+	
 	private FoodMaterial(Material material, int hunger, Saturation saturation, FoodGroup foodGroup) {
-		
+		this.material = material;
 	}
 	
 	private FoodMaterial(Material material, int hunger, Saturation saturation, FoodGroup foodGroup, boolean refried) {
-		
+		this.material = material;
 	}
 	
 	private FoodMaterial(Material material, int hunger, Saturation saturation, FoodGroup foodGroup, boolean refried, Material baseMaterial) {
-		
+		this.material = material;
+	}
+
+	public Material getMaterial() {
+		return material;
+	}
+
+	public int getHunger() {
+		return hunger;
+	}
+
+	public Saturation getSaturation() {
+		return saturation;
+	}
+
+	public FoodGroup getFoodGroup() {
+		return foodGroup;
+	}
+
+	public boolean isRefried() {
+		return refried;
+	}
+
+	public Material getBaseMaterial() {
+		return baseMaterial;
+	}
+
+
+
+	//tbh I have no idea why this works, which may or may not be a problem in the future.
+	static
+    {
+        for (FoodMaterial foodMaterial : EnumSet.allOf(FoodMaterial.class))
+        {
+            materialMap.put(foodMaterial.material, foodMaterial);
+        }
+    }
+
+	public static FoodMaterial get(Material type) {
+		return materialMap.get(type);
 	}
 	
 }
