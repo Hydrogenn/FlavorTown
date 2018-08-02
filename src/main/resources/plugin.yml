@@ -1,6 +1,6 @@
 name: FlavorTown
 description: Revolutionizes food and cooking in Minecraft.
-main: hydrogenn.flavorTown.FlavorTown
+main: me.hydrogenn.flavortown.FlavorTown
 version: 1.0
 commands:
   hunger:

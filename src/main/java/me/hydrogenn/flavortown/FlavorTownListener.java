@@ -1,4 +1,4 @@
-package main.java.hydrogenn.flavortown;
+package me.hydrogenn.flavortown;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,7 +13,7 @@ public class FlavorTownListener implements Listener {
 		
 		if (!isCookingRecipe(e)) return;
 		
-		CraftingInventory inventory = (CraftingInventory) e.getClickedInventory();
+		CraftingInventory inventory = (CraftingInventory) e.getInventory();
 		
 		FoodCombo food = new FoodCombo(inventory.getMatrix());
 		
@@ -22,7 +22,7 @@ public class FlavorTownListener implements Listener {
 	}
 
 	private static boolean isCookingRecipe(InventoryClickEvent e) {
-		boolean isCraftingBench = e.getClickedInventory() instanceof CraftingInventory; //is interacting with the crafting bench
+		boolean isCraftingBench = e.getInventory() instanceof CraftingInventory; //is interacting with the crafting bench
 		boolean isOnlyFood = true; //all ingredients are food items
 		boolean isValidRecipe = false; //is a valid recipe in the base game
 		return isCraftingBench && isOnlyFood && !isValidRecipe;

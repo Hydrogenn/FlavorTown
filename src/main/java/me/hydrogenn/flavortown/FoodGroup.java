@@ -1,4 +1,4 @@
-package main.java.hydrogenn.flavortown;
+package me.hydrogenn.flavortown;
 
 public enum FoodGroup {
 	
