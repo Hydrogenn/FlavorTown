@@ -21,7 +21,7 @@ public class FlavorTown extends JavaPlugin {
     }
 
     private void addListener() {
-    	getServer().getPluginManager().registerEvents(new BreweryListener(), this);
+    	getServer().getPluginManager().registerEvents(new FlavorTownListener(), this);
 	}
 
 	public void reload() {
