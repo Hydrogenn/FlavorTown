@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.hydrogenn.flavortown.event.CraftingListener;
+import me.hydrogenn.flavortown.type.NutritionSet;
 
 public class FlavorTown extends JavaPlugin {
 	

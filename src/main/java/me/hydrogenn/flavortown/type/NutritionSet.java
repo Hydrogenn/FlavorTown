@@ -1,4 +1,4 @@
-package me.hydrogenn.flavortown;
+package me.hydrogenn.flavortown.type;
 
 import java.util.HashMap;
 import java.util.Map;
