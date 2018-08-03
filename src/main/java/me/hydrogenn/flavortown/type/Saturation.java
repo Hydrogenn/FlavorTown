@@ -1,4 +1,4 @@
-package me.hydrogenn.flavortown;
+package me.hydrogenn.flavortown.type;
 
 public enum Saturation {
 

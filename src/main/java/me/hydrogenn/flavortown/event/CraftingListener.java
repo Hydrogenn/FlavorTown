@@ -1,5 +1,7 @@
-package me.hydrogenn.flavortown;
+package me.hydrogenn.flavortown.event;
 
+import me.hydrogenn.flavortown.type.FoodCombo;
+import me.hydrogenn.flavortown.type.FoodMaterial;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
@@ -7,7 +9,7 @@ import org.bukkit.inventory.CraftingInventory;
 
 import java.util.Arrays;
 
-public class FlavorTownListener implements Listener {
+public class CraftingListener implements Listener {
 
     // this won't readily convert into cauldrons but /shrug
     @EventHandler

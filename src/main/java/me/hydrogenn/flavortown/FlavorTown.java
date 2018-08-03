@@ -1,5 +1,6 @@
 package me.hydrogenn.flavortown;
 
+import me.hydrogenn.flavortown.event.CraftingListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class FlavorTown extends JavaPlugin {
@@ -13,7 +14,7 @@ public class FlavorTown extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        getServer().getPluginManager().registerEvents(new FlavorTownListener(), this);
+        getServer().getPluginManager().registerEvents(new CraftingListener(), this);
 
         reload();
     }

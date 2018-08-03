@@ -1,4 +1,4 @@
-package me.hydrogenn.flavortown;
+package me.hydrogenn.flavortown.type;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
