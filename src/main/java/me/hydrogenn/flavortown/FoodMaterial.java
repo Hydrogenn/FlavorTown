@@ -48,6 +48,7 @@ public enum FoodMaterial {
 	COCOA_BEANS(Material.COCOA_BEANS, 1, Saturation.POOR, FoodGroup.PROTEIN),
 	BROWN_MUSHROOM(Material.BROWN_MUSHROOM, 0, Saturation.POOR, FoodGroup.VEGETABLE),
 	RED_MUSHROOM(Material.RED_MUSHROOM, -1, Saturation.POOR, FoodGroup.VEGETABLE),
+	KELP(Material.KELP, 0, Saturation.POOR, FoodGroup.VEGETABLE),
 	PUMPKIN(Material.PUMPKIN, 0, Saturation.POOR, FoodGroup.VEGETABLE),
 	SUGAR(Material.SUGAR, 0, Saturation.POOR, FoodGroup.SUGAR),
 	

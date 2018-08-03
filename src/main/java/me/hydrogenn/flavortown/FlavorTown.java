@@ -1,8 +1,15 @@
 package me.hydrogenn.flavortown;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class FlavorTown extends JavaPlugin {
+	
+	private Map<UUID, NutritionSet> playerHungers = new HashMap<UUID, NutritionSet>();
+	
     private static FlavorTown instance;
 
     public static FlavorTown getInstance() {

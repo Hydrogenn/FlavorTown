@@ -48,7 +48,7 @@ public class FoodCombo {
 		String nutritionBar = "";
 		
 		for (FoodGroup foodGroup : nutrition.keySet()) {
-			nutritionBar += foodGroup.getColor() + StringUtils.repeat("■", nutrition.get(foodGroup).intValue());
+			nutritionBar += foodGroup.getColor() + StringUtils.repeat("■", nutrition.get(foodGroup).intValue()/2) + "▣";
 		}
 		
 		lore.add(nutritionBar);
@@ -61,7 +61,9 @@ public class FoodCombo {
 		
 	}
 	
+	//TODO dynamically change the name based on what the inputs are, and insert custom text.
 	private String name() {
+		
 		return ChatColor.GRAY + "Food.";
 	}
 	
