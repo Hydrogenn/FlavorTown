@@ -12,17 +12,13 @@ public class FlavorTown extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        
-        addListener();
-        
+
+        getServer().getPluginManager().registerEvents(new FlavorTownListener(), this);
+
         reload();
     }
 
-    private void addListener() {
-    	getServer().getPluginManager().registerEvents(new FlavorTownListener(), this);
-	}
-
-	public void reload() {
+    public void reload() {
         saveDefaultConfig();
         reloadConfig();
     }

@@ -2,39 +2,33 @@ package me.hydrogenn.flavortown;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
-import org.bukkit.inventory.ItemStack;
+
+import java.util.Arrays;
 
 public class FlavorTownListener implements Listener {
 
-	//this won't readily convert into cauldrons but /shrug
-	@EventHandler
-	public static void craftingBenchInteraction(PrepareItemCraftEvent e) {
-		
-		if (!isCookingRecipe(e)) return;
-		
-		CraftingInventory inventory = e.getInventory();
-		
-		FoodCombo food = new FoodCombo(inventory.getMatrix());
-		
-		inventory.setResult(food.cook());
-		
-	}
+    // this won't readily convert into cauldrons but /shrug
+    @EventHandler
+    public static void craftingBenchInteraction(PrepareItemCraftEvent e) {
+        if (!isCookingRecipe(e)) return;
 
-	private static boolean isCookingRecipe(PrepareItemCraftEvent e) {
-		boolean isOnlyFood = isAllFoods(e.getInventory().getMatrix());
-		boolean isValidRecipe = false; //is a valid recipe in the base game
-		return isOnlyFood && !isValidRecipe;
-	}
+        CraftingInventory inventory = e.getInventory();
 
-	private static boolean isAllFoods(ItemStack... items) {
-		for (ItemStack item : items) {
-			if (item == null) continue;
-			if (FoodMaterial.get(item.getType()) == null) return false;
-		}
-		return true;
-	}
-	
+        FoodCombo food = new FoodCombo(inventory.getMatrix());
+
+        inventory.setResult(food.getResult());
+    }
+
+    private static boolean isCookingRecipe(PrepareItemCraftEvent e) {
+        boolean isOnlyFood = Arrays.stream(e.getInventory().getMatrix())
+                .allMatch(item -> item == null || FoodMaterial.get(item.getType()) != null);
+        // is a valid recipe in the base game
+        // TODO: Have this actually check for valid recipes
+        boolean isValidRecipe = false;
+
+        return isOnlyFood && !isValidRecipe;
+    }
+
 }
