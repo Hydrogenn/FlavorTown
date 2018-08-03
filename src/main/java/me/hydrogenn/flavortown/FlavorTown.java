@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.hydrogenn.flavortown.event.CraftingListener;
+
 public class FlavorTown extends JavaPlugin {
 	
 	private Map<UUID, NutritionSet> playerHungers = new HashMap<UUID, NutritionSet>();
@@ -26,7 +28,7 @@ public class FlavorTown extends JavaPlugin {
     }
 
     private void addListener() {
-    	getServer().getPluginManager().registerEvents(new FlavorTownListener(), this);
+    	getServer().getPluginManager().registerEvents(new CraftingListener(), this);
 	}
 
 	public void reload() {

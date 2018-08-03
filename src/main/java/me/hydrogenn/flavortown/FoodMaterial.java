@@ -7,6 +7,8 @@ import java.util.Map;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import me.hydrogenn.flavortown.type.Saturation;
+
 /**
  * Spigot does not have an interface for finding the food and saturation values for food items.
  * This fixes that by, uh, hardcoding those values somewhere.
