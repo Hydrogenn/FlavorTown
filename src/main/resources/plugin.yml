@@ -2,6 +2,7 @@ name: FlavorTown
 description: Revolutionizes food and cooking in Minecraft.
 main: me.hydrogenn.flavortown.FlavorTown
 version: 1.0
+api-version: 1.13
 commands:
   hunger:
     description: Check all information about your current hunger, saturation and nutrition

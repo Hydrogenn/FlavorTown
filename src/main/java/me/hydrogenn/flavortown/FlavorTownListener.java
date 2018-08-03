@@ -3,17 +3,19 @@ package me.hydrogenn.flavortown;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
+import org.bukkit.inventory.ItemStack;
 
 public class FlavorTownListener implements Listener {
 
 	//this won't readily convert into cauldrons but /shrug
 	@EventHandler
-	public static void craftingBenchInteraction(InventoryClickEvent e) {
+	public static void craftingBenchInteraction(PrepareItemCraftEvent e) {
 		
 		if (!isCookingRecipe(e)) return;
 		
-		CraftingInventory inventory = (CraftingInventory) e.getInventory();
+		CraftingInventory inventory = e.getInventory();
 		
 		FoodCombo food = new FoodCombo(inventory.getMatrix());
 		
@@ -21,11 +23,18 @@ public class FlavorTownListener implements Listener {
 		
 	}
 
-	private static boolean isCookingRecipe(InventoryClickEvent e) {
-		boolean isCraftingBench = e.getInventory() instanceof CraftingInventory; //is interacting with the crafting bench
-		boolean isOnlyFood = true; //all ingredients are food items
+	private static boolean isCookingRecipe(PrepareItemCraftEvent e) {
+		boolean isOnlyFood = isAllFoods(e.getInventory().getMatrix());
 		boolean isValidRecipe = false; //is a valid recipe in the base game
-		return isCraftingBench && isOnlyFood && !isValidRecipe;
+		return isOnlyFood && !isValidRecipe;
+	}
+
+	private static boolean isAllFoods(ItemStack... items) {
+		for (ItemStack item : items) {
+			if (item == null) continue;
+			if (FoodMaterial.get(item.getType()) == null) return false;
+		}
+		return true;
 	}
 	
 }

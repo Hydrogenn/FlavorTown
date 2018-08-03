@@ -3,10 +3,14 @@ package me.hydrogenn.flavortown;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.util.StringUtil;
 
 public class FoodCombo {
 
@@ -14,19 +18,23 @@ public class FoodCombo {
 	
 	public FoodCombo(ItemStack... contents) {
 		for (ItemStack item : contents) {
+			if (item == null) continue;
 			recipe.add(FoodMaterial.get(item.getType()));
 		}
 	}
 	
-	//TODO return an item this recipe can create
 	public ItemStack cook() {
 		
-		ItemStack food = new ItemStack(Material.BREAD);
+		ItemStack food = new ItemStack(Material.BREAD, 1);
 		
 		int hunger = 0;
+		double saturation = 0;
+		Map<FoodGroup, Double> nutrition = new HashMap<FoodGroup, Double>();
 		
 		for (FoodMaterial foodMaterial : recipe) {
 			hunger += foodMaterial.getHunger();
+			saturation += foodMaterial.getSaturationValue();
+			nutrition.put(foodMaterial.getFoodGroup(), nutrition.getOrDefault(foodMaterial.getFoodGroup(), 0.0) + foodMaterial.getNutritionContribution());
 		}
 		
 		ItemMeta foodMeta = food.getItemMeta();
@@ -35,6 +43,15 @@ public class FoodCombo {
 		
 		List<String> lore = new ArrayList<String>();
 		lore.add(Integer.toString(hunger) + " hunger restored, but not really.");
+		lore.add(Double.toString(saturation) + " saturation restored, but again... not really.");
+		
+		String nutritionBar = "";
+		
+		for (FoodGroup foodGroup : nutrition.keySet()) {
+			nutritionBar += foodGroup.getColor() + StringUtils.repeat("☐", nutrition.get(foodGroup).intValue());
+		}
+		
+		lore.add(nutritionBar);
 		
 		foodMeta.setLore(lore);
 		
@@ -45,7 +62,7 @@ public class FoodCombo {
 	}
 	
 	private String name() {
-		return "Food.";
+		return ChatColor.GRAY + "Food.";
 	}
 	
 }

@@ -13,5 +13,9 @@ public enum Saturation {
 	private Saturation(double saturationRatio) {
 		this.saturationRatio = saturationRatio;
 	}
+
+	public double getSaturationRatio() {
+		return saturationRatio;
+	}
 	
 }

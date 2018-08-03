@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Spigot does not have an interface for finding the food and saturation values for food items.
@@ -63,7 +64,7 @@ public enum FoodMaterial {
 	COOKED_COD(Material.COOKED_COD, 5, Saturation.NORMAL, FoodGroup.PROTEIN, true), //TODO verify that this has not changed
 	
 	MUSHROOM_STEW(Material.MUSHROOM_STEW, 6, Saturation.NORMAL, FoodGroup.VEGETABLE, true, Material.BOWL),
-	RABBIT_STEW(Material.RABBIT_STEW, 8, Saturation.NORMAL, FoodGroup.VEGETABLE, true, Material.BOWL),
+	RABBIT_STEW(Material.RABBIT_STEW, 10, Saturation.NORMAL, FoodGroup.VEGETABLE, true, Material.BOWL),
 	BEETROOT_SOUP(Material.BEETROOT_SOUP, 6, Saturation.NORMAL, FoodGroup.VEGETABLE, true, Material.BOWL),
 	
 	BREAD(Material.BREAD, 5, Saturation.NORMAL, FoodGroup.GRAIN, true),
@@ -84,14 +85,29 @@ public enum FoodMaterial {
 	
 	private FoodMaterial(Material material, int hunger, Saturation saturation, FoodGroup foodGroup) {
 		this.material = material;
+		this.hunger = hunger;
+		this.saturation = saturation;
+		this.foodGroup = foodGroup;
+		this.refried = false;
+		this.baseMaterial = null;
 	}
 	
 	private FoodMaterial(Material material, int hunger, Saturation saturation, FoodGroup foodGroup, boolean refried) {
 		this.material = material;
+		this.hunger = hunger;
+		this.saturation = saturation;
+		this.foodGroup = foodGroup;
+		this.refried = refried;
+		this.baseMaterial = null;
 	}
 	
 	private FoodMaterial(Material material, int hunger, Saturation saturation, FoodGroup foodGroup, boolean refried, Material baseMaterial) {
 		this.material = material;
+		this.hunger = hunger;
+		this.saturation = saturation;
+		this.foodGroup = foodGroup;
+		this.refried = refried;
+		this.baseMaterial = baseMaterial;
 	}
 
 	public Material getMaterial() {
@@ -125,12 +141,20 @@ public enum FoodMaterial {
     {
         for (FoodMaterial foodMaterial : EnumSet.allOf(FoodMaterial.class))
         {
-            materialMap.put(foodMaterial.material, foodMaterial);
+            materialMap.put(foodMaterial.getMaterial(), foodMaterial);
         }
     }
 
 	public static FoodMaterial get(Material type) {
 		return materialMap.get(type);
+	}
+
+	public double getSaturationValue() {
+		return getSaturation().getSaturationRatio() * (double) getHunger() * (refried?0.5:1.0);
+	}
+	
+	public double getNutritionContribution() {
+		return (getSaturationValue() + getHunger() + 1) / 2.0 / (refried?2.0:1.0);
 	}
 	
 }
