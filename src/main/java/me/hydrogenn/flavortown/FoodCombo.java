@@ -48,7 +48,7 @@ public class FoodCombo {
 		String nutritionBar = "";
 		
 		for (FoodGroup foodGroup : nutrition.keySet()) {
-			nutritionBar += foodGroup.getColor() + StringUtils.repeat("☐", nutrition.get(foodGroup).intValue());
+			nutritionBar += foodGroup.getColor() + StringUtils.repeat("■", nutrition.get(foodGroup).intValue());
 		}
 		
 		lore.add(nutritionBar);
