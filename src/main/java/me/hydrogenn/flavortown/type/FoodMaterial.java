@@ -3,8 +3,8 @@ package me.hydrogenn.flavortown.type;
 import org.bukkit.Material;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Spigot does not have an interface for finding the food and saturation values for food items.
@@ -73,11 +73,11 @@ public enum FoodMaterial {
     PUMPKIN_PIE(Material.PUMPKIN_PIE, 8, Saturation.LOW, FoodGroup.SUGAR, true),
     CAKE(Material.CAKE, 14, Saturation.POOR, FoodGroup.SUGAR, true);
 
-    private static final Map<Material, FoodMaterial> materialMap;
+    private static final Map<Material, FoodMaterial> materialMap = new HashMap<>();
 
     //tbh I have no idea why this works, which may or may not be a problem in the future.
     static {
-        materialMap = Arrays.stream(values()).collect(Collectors.toMap(FoodMaterial::getBaseMaterial, key -> key));
+        Arrays.stream(values()).forEach(material -> materialMap.put(material.getBaseMaterial(), material));
     }
 
     private final Material material;
